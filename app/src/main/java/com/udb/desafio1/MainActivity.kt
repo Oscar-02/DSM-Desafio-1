@@ -19,6 +19,9 @@ lateinit var Result : EditText
 class MainActivity : AppCompatActivity() {
     var No1 : Float? = 0f
     var No2 : Float? = 0f
+    var result : Float? = 0f
+    var op : Operations = Operations()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,10 +44,48 @@ class MainActivity : AppCompatActivity() {
                 No2 = Value2.text.toString().toFloat()
             }
             catch (e:Exception){
-                Result.setText(e.message)
+                Result.setText("El valor ingresado no es valido o esta vacío")
                 return@setOnClickListener
             }
-
+            result = op.Sum(No1!!, No2!!)
+            Result.setText(result.toString())
+        }
+        Minus.setOnClickListener {
+            try {
+                No1 = Value1.text.toString().toFloat()
+                No2 = Value2.text.toString().toFloat()
+            }
+            catch (e:Exception){
+                Result.setText("El valor ingresado no es valido o esta vacío")
+                return@setOnClickListener
+            }
+            result = op.Minus(No1!!, No2!!)
+            Result.setText(result.toString())
+        }
+        Multiply.setOnClickListener {
+            try {
+                No1 = Value1.text.toString().toFloat()
+                No2 = Value2.text.toString().toFloat()
+            }
+            catch (e:Exception){
+                Result.setText("El valor ingresado no es valido o esta vacío")
+                return@setOnClickListener
+            }
+            result = op.Multiply(No1!!, No2!!)
+            Result.setText(result.toString())
+        }
+        Divide.setOnClickListener {
+            try {
+                No1 = Value1.text.toString().toFloat()
+                No2 = Value2.text.toString().toFloat()
+            }
+            catch (e:Exception){
+                Result.setText("El valor ingresado no es valido o esta vacío")
+                return@setOnClickListener
+            }
+            result = op.Divide(No1!!, No2!!)
+            if (result == null) Result.setText("Indeterminado")
+            else Result.setText(result!!.toString())
         }
     }
 
